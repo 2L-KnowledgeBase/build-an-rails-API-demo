@@ -19,10 +19,10 @@ HTTP GET http://10.100.25.23:3000/api/v1/users/1
 HTTP POST http://10.100.25.23:3000/api/v1/sessions
 
 header
-content-type: application/x-www-form-urlencoded
+- content-type: application/x-www-form-urlencoded
 
 body
-user[email]=test1@cscs.com&user[password]=1234
+- user[email]=test1@cscs.com&user[password]=1234
 
 ```
 {
@@ -38,11 +38,11 @@ user[email]=test1@cscs.com&user[password]=1234
 HTTP PUT http://10.100.25.23:3000/api/v1/users/1
 
 header
-content-type: application/x-www-form-urlencoded
-authorization: Token token=`<token_string>`,email=test1@cscs.com
+- content-type: application/x-www-form-urlencoded
+- authorization: Token token=`<token_string>`,email=test1@cscs.com
 
 body
-user[name]=mark
+- user[name]=mark
 
 ```
 {
@@ -56,6 +56,7 @@ user[name]=mark
 
 HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?page=3
 
+HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?per_page=4 (each page size is 4)
 ```
 {
 	"paginate_meta": {
@@ -82,8 +83,5 @@ HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?page=3
 			"content": "content-52"
 		},
 
-...
 }
-'''
-        	                                                                            
-HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?per_page=4 (each page size is 4)
+```  
