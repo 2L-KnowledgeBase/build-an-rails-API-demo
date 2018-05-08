@@ -4,6 +4,9 @@
 
 > 使用ROR来实现，OAuth/admin portal(业务人员可操作页面)/api call statistic
 
+![](./build_api_demo.jpg)
+
+
 ### step 1: get your login(email/password) from admin
 
 ### step 2: generate access token
