@@ -1,20 +1,12 @@
-## Build an API demo
+## Build an API demo 
 
-HTTP GET http://10.100.25.23:3000/api/v1/users/1 
+### GDS REST API 使用手册
 
-```
-{
-"user": {
-	"id": 1,
-	"email": "test1@cscs.com",
-	"name": "mark",
-	"activated": "2018-05-03T08:03:49.895Z",
-	"admin": false,
-	"created_at": "2018-05-03T08:03:49.902Z",
-	"updated_at": "2018-05-03T09:38:35.036Z"
-	}
-}
-```
+> 使用ROR来实现，OAuth/admin portal(业务人员可操作页面)/api call statistic
+
+### step 1: get your login(email/password) from admin
+
+### step 2: generate access token
 
 HTTP POST http://10.100.25.23:3000/api/v1/sessions
 
@@ -22,7 +14,7 @@ header
 - content-type: application/x-www-form-urlencoded
 
 body
-- user[email]=test1@cscs.com&user[password]=1234
+- user[email]=xxx@cscs.com&user[password]=whatever
 
 ```
 {
@@ -35,26 +27,18 @@ body
 }
 ```
 
-HTTP PUT http://10.100.25.23:3000/api/v1/users/1
+### step 3: call avaliable API endpoint for your account
+
+HTTP GET http://10.100.25.23:3000/api/v1/company?company_name=中证信用增进股份有限公司
 
 header
 - content-type: application/x-www-form-urlencoded
-- authorization: Token token=`<token_string>`,email=test1@cscs.com
-
-body
-- user[name]=mark
-
-```
-{
-"user": {
-	"id": 1,
-	"name": "mark"
-	}
-}
-``` 
-
+- authorization: Token token=`<token_string>`,email=xxx@cscs.com
 
 HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?page=3
+
+
+### TBD
 
 HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?per_page=4 (each page size is 4)
 ```
