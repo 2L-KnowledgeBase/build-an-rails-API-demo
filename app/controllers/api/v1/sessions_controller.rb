@@ -1,9 +1,10 @@
 class Api::V1::SessionsController < Api::V1::BaseController
 
 	def create
-		@user = User.find_by(email: create_params[:email])
-		if @user && @user.authenticate(create_params[:password])
-			self.current_user = @user
+		@api_user = ApiUser.find_by(email: create_params[:email])
+		if @api_user && @api_user.authenticate(create_params[:password])
+			@api_user.reset_auth_token!	
+			self.current_api_user = @api_user
 		else
 			return api_error(status: 401)
 		end

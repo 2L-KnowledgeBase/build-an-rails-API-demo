@@ -13,7 +13,7 @@ class Api::V1::BaseController < ApplicationController
 	# disable the CSRF token
 	skip_before_action :verify_authenticity_token
 
-	attr_accessor :current_user
+	attr_accessor :current_api_user
 
 	def destroy_session
 		request.session_options[:skip] = true
@@ -27,12 +27,23 @@ class Api::V1::BaseController < ApplicationController
 
 	def authenticate_user!
 		token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-		p token, options
-		user_email = options.blank?? nil : options[:email]
-		user = user_email && User.find_by(email: user_email) 
+		
+		api_user_email = options.blank?? nil : options[:email]
+		api_user = api_user_email && ApiUser.find_by(email: api_user_email) 
+		
+		if api_user && ActiveSupport::SecurityUtils.secure_compare(api_user.authentication_token, token)
+			request_endpoint = request.fullpath.split("?")[0]
+			api_endpoint = api_user.api_endpoints.find_by(url:request_endpoint)
+			
+			if api_endpoint
+				api_permission = api_user.api_permissions.find_by(api_endpoint_id:api_endpoint.id)
+				api_permission.increment!(:request_times)
+				api_user.request_histories.create(api_user_id:api_user.id,api_endpoint_id:api_endpoint.id,request_parameter:URI.unescape(request.fullpath))
 
-		if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
-			self.current_user = user
+				self.current_api_user = api_user
+			else
+				return deny_access
+			end
 		else
 			return unauthenticated!
 		end

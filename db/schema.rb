@@ -10,12 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_03_103217) do
+ActiveRecord::Schema.define(version: 2018_05_08_025829) do
+
+  create_table "api_endpoints", force: :cascade do |t|
+    t.string "private_name"
+    t.string "public_name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "api_permissions", force: :cascade do |t|
+    t.integer "api_user_id"
+    t.integer "api_endpoint_id"
+    t.integer "request_times", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "api_users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "authentication_token"
+    t.string "password_digest"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "request_histories", force: :cascade do |t|
+    t.integer "api_user_id"
+    t.integer "api_endpoint_id"
+    t.string "request_parameter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,7 +61,6 @@ ActiveRecord::Schema.define(version: 2018_05_03_103217) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "authentication_token"
     t.string "password_digest"
   end
 

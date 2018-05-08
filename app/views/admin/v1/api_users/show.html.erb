@@ -1,0 +1,31 @@
+<div class="container">
+	<%= render 'shared/header' %>
+	<div class="panel panel-info">
+  		<div class="panel-heading">
+    			<h3 class="panel-title">API User <%= @api_user.name %> Statistic</h3>
+  		</div>
+	  	<div class="panel-body">
+			<p> API Permission already have: </p>	
+			<ol>	
+			<% @api_user.api_endpoints.each do |endpoint| %>
+				<li><%= endpoint.private_name %></li>		
+			<% end %>	
+			</ol>
+		
+			<p> API request Count Total: </p>
+			<ol>	
+			<% @api_user.api_permissions.each do |api| %>
+				<li><b><%= api.api_endpoint.private_name %></b>: <%= api.request_times %></li>		
+			<% end %>	
+			</ol>
+
+			<p> API request History: </p>
+			<ol>	
+			<% @api_user.request_histories.each do |req| %>
+				<li><b><%= req.created_at %></b>: <%= req.request_parameter %></li>		
+			<% end %>	
+			</ol>
+
+		</div>
+	</div>
+</div>

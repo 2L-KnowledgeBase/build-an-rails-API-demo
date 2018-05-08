@@ -1,0 +1,21 @@
+<div class="table-responsive" style="overflow-x: auto">
+    <table class="table table-striped">
+		<thead><tr>
+			<th>name</th>
+			<th>email</th>	
+			<th></th> 
+		</tr></thead>
+	<% @api_users.each do |api_user| %>
+			<tr>
+                	<td><b><%= api_user.name %></b></td>
+			<td><%= api_user.email %></td>
+                	<td>
+				<%= link_to 'edit', edit_admin_v1_user_api_user_path(@user,api_user), class: "btn btn-primary" %>
+                		<%= link_to 'show', admin_v1_user_api_user_path(@user,api_user), class: "btn btn-info" %>
+                		<%= link_to 'delete', admin_v1_user_api_user_path(@user,api_user), class: "btn btn-danger", method: "delete", data: {confirm: "Are you sure?"} %>
+                		<%= link_to 'disable', disable_admin_v1_user_api_user_path(@user,api_user), class: "btn btn-warning" %>
+			</td>
+			</tr>
+    	<% end %>
+    </table>
+</div>

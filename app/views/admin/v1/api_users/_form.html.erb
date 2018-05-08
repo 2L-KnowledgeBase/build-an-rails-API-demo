@@ -1,0 +1,38 @@
+<%= form_for [:admin,:v1,@user,@api_user], :html=>{class: 'form-horizontal'}, remote:true do |f| %>
+
+	<div class="form-group">
+		<%= f.label :email, class: 'col-md-4 control-label' %>
+		<div class="col-md-4">	
+			<%= f.email_field :email, class: 'form-control' , placeholder: 'who@example.com' %>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<%= f.label :name, class: 'col-md-4 control-label' %>
+		<div class="col-md-4">
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+	</div>
+    
+   	<div class="form-group">
+		<%= f.label :password, class: 'col-md-4 control-label' %>
+		<div class="col-md-4">
+			<%= f.text_field :password, class: 'form-control' %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :allowed_api_endpoints, class: 'col-md-4 control-label' %>
+        	<div class="col-md-4">	
+            		<%= select_tag :allowed_api_endpoints, options_for_select(ApiEndpoint.pluck(:private_name,:id)), {:multiple=>true, :class=>'form-control'} %>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-4 col-md-offset-4">		
+			<%= f.submit 'Submit' ,class: 'btn btn-success'%>
+			<%= link_to 'Cancel', admin_v1_user_api_users_path(@user), class: 'btn btn-success' %>
+		</div>
+    </div>
+
+<% end %>

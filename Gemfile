@@ -12,14 +12,25 @@ gem 'sqlite3'
 gem 'bcrypt'
 # use rails c
 gem 'rb-readline'
+# policy
 gem 'pundit'
-
+# pages
 gem 'kaminari'
+# restful request
+gem 'rest-client'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
+# bootstrap
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+
+# highchart js
+gem 'lazy_high_charts'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

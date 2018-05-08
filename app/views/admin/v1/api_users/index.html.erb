@@ -1,0 +1,15 @@
+<div class="container">
+	<%= render 'shared/header' %>
+	<div class="panel panel-info">
+		<div class="panel-heading"><h3>API User Console</h3></div>
+		<div class="panel-body">
+			<p class="text-info">Timezone: GMT+8 | Current User: <%= @user.name %></p>
+		</div>
+		<%= render 'api_users'%>
+		<%= high_chart_globals(@chart_globals) %>
+		<%= high_chart("some_id", @chart) %> 	
+	</div>
+	<%= link_to 'Create New API User', new_admin_v1_user_api_user_path(@user), class: "btn btn-success" %>
+	<%= link_to 'Logout', logout_admin_v1_user_path(@user), class: "btn btn-warning" %>
+</div>
+

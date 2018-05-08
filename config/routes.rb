@@ -8,6 +8,25 @@ Rails.application.routes.draw do
 			scope path: '/user/:user_id' do
 				resources :microposts, only: [:index], :defaults => { :format => 'json' }
 			end
+			get '/company', to: 'company#query', :defaults => { :format => 'json' }
+		end
+	end
+
+	namespace :admin do
+		namespace :v1 do
+			get '/', to: 'session#login'
+			post '/', to: 'session#verify'
+
+			resources :users do
+				member do
+					get 'logout'
+				end
+				resources :api_users do
+					member do
+						get 'disable'
+					end
+				end
+			end
 		end
 	end
 
