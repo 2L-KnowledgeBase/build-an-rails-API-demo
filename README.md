@@ -21,7 +21,6 @@ body
 "session": {
 	"id": 1,
 	"name": "mark",
-	"admin": false,
 	"token": "95LzmhGr1Mg0dUep5wug5KIaJXG8wi2WHYh+LifHlj2Ie3PSr8lowPTpQ7hkC718219rZ9U/EA3aRTOaRGOBPA=="
 	}
 }
