@@ -37,10 +37,11 @@ header
 - content-type: application/x-www-form-urlencoded
 - authorization: Token token=`<token_string>`,email=xxx@cscs.com
 
+
+
+### TBD (split page)
+
 HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?page=3
-
-
-### TBD
 
 HTTP GET http://10.100.25.23:3000/api/v1/user/1/microposts?per_page=4 (each page size is 4)
 ```
